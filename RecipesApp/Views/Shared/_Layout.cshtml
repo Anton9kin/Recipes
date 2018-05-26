@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="../../Content/Site.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+    <div id="container">
+        <div id="header">
+            <div id="site_title"></div>
+        </div>
+        <!-- end of header -->
+
+        <div id="menu">
+            <ul>
+                <li><b>@Html.ActionLink("Супы", "Index", "Home")</b></li>
+                <li><a href="two_bludo.html"><b>Вторые блюда</b></a></li>
+                <li><a href="salaty.html"><b>Салаты</b></a></li>
+                <li><a href="zakuski.html"><b>Закуски</b></a></li>
+                <li><a href="vipechka.html"><b>Выпечка</b></a></li>
+                <li><a href="deserty.html"><b>Десерты</b></a></li>
+                <li><a href="napitki.html"><b>Напитки</b></a></li>
+            </ul>
+        </div>
+            <!-- end of menu -->
+
+            @RenderBody()
+
+            <!-- ADD NEW LINE -->
+            <div class="cleaner">&nbsp;</div>
+            <div id="templatemo_footer">
+
+                Copyright © @DateTime.Now.Year <a href="#"><strong>Надины рецепты</strong></a>
+            </div>
+            <!-- end of footer -->
+            <!--  Free CSS Templates by TemplateMo.com  -->
+        </div>
+
+    
+</body>
+</html>
