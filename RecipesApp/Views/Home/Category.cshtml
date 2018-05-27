@@ -24,12 +24,12 @@
 
             @if (r.Type == ViewBag.Cat)
             {
-                <a href="@r.Link" target="_parent">
+                <a href="/Home/About/@r.Id" target="_parent">
                     <img src="@r.Image" alt="Фото" />
                 </a>
                 <h2>@r.Name</h2>
                 <p>
-                    @r.Ingridient <a href="@r.Link" target="_parent">Читать далее</a>
+                    @r.Ingridient <a href="/Home/About/@r.Id" target="_parent">Читать далее</a>
                 </p>
             }
 

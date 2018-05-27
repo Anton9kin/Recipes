@@ -26,10 +26,48 @@ namespace RecipesApp.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [HttpGet]
+        public ActionResult Create()
         {
-            ViewBag.Message = "Your application description page.";
+            return View();
+        }
 
+        [HttpPost]
+        public string Create(Recipe rec)
+        {
+            string s = "";
+            
+            s += "Вы успешно создали рецепт: ";
+            s += rec.Name + " в категории " + rec.Type + " ";
+            s += "Ингридиенты: " + rec.Ingridient + " ";
+            s += "Спосбо приготовления: " + rec.Cooking;
+            s += "Фото: " + rec.Image;
+
+            switch (rec.Type)
+            {
+                case "Суп": rec.Type = "Soup"; break;
+                case "Второе блюдо": rec.Type = "SecondCourse"; break;
+                case "Салат": rec.Type = "Salad"; break;
+                case "Закуска": rec.Type = "Snak"; break;
+                case "Выпечка": rec.Type = "Bake"; break;
+                case "Десерт": rec.Type = "Dessert"; break;
+                case "Напиток": rec.Type = "Drink"; break;
+            }
+
+            db.Recipes.Add(rec);
+
+            db.SaveChanges();
+
+            return s;
+        }
+
+        public ActionResult About(string id)
+        {
+            var recipes = db.Recipes;
+
+            ViewBag.Recipes = recipes;
+
+            ViewBag.Show = UInt32.Parse(id);
             return View();
         }
 

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Надины рецепты";
+}
+
+<div id="templatemo_top_dishes">
+    <h1>Добавление рецепта</h1>
+
+    <div class="top_dishes_box">
+        <form method="post" action="">
+            <table>
+                <tr>
+                    <td><p>Название блюда :</p></td>
+                    <td><input type="text" name="Name" /> </td>
+                </tr>
+                <tr>
+                    <td><p>Выберите категорию :</p></td>
+                    <td>
+                        @Html.ListBox("Type", new SelectList(new string[] { "Суп", "Второе блюдо", "Салат", "Закуска", "Выпечка", "Десерт", "Напиток" }))
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Выберите фото :</p></td>
+                    <td><input type="text" name="Image" /> </td>
+                </tr>
+                <tr>
+                    <td><p>Ингридиенты :</p></td>
+                    <td>@Html.TextArea("Ingridient", "", 5, 50, null)</td>
+                </tr>
+                <tr>
+                    <td><p>Как готовить :</p></td>
+                    <td>@Html.TextArea("Cooking", "", 25, 50, null)</td>
+                </tr>
+                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</div>

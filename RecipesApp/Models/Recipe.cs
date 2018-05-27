@@ -13,6 +13,5 @@ namespace RecipesApp.Models
         public string Image { get; set; }
         public string Ingridient { get; set; }
         public string Cooking { get; set; }
-        public string Link { get; set; }
     }
 }

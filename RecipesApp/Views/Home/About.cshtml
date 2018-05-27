@@ -1,7 +1,31 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Надины рецепты";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<div id="templatemo_top_dishes">
+
+
+    @{
+        foreach (var r in ViewBag.Recipes)
+        {
+            if (r.Id == ViewBag.Show)
+            {
+                <h1>@r.Name</h1>
+                <div class="recept">
+                    <!--        	  <img src="images/templatemo_image_01.jpg" alt="image" />  -->
+                    <h2>Ингредиенты:</h2>
+                    <ul>
+                        <li>@r.Ingridient</li>
+                    </ul>
+                    <h2>Способ приготовления:</h2>
+                    <div class="prigotovlen">
+                        @r.Cooking
+                    </div>
+                </div>
+                <div class="cleaner">&nbsp;</div>
+            }
+        }
+    }
+
+
+</div> <!-- end of top dishes -->
