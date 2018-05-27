@@ -13,10 +13,16 @@ namespace RecipesApp.Controllers
 
         public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult Category(string id)
+        {
             var recipes = db.Recipes;
 
             ViewBag.Recipes = recipes;
 
+            ViewBag.Cat = id;
             return View();
         }
 

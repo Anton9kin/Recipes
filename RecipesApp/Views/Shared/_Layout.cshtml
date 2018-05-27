@@ -13,20 +13,17 @@
             <div id="site_title"></div>
         </div>
         <!-- end of header -->
-
         <div id="menu">
             <ul>
-                <li><b>@Html.ActionLink("Супы", "Index", "Home")</b></li>
-                <li><a href="two_bludo.html"><b>Вторые блюда</b></a></li>
-                <li><a href="salaty.html"><b>Салаты</b></a></li>
-                <li><a href="zakuski.html"><b>Закуски</b></a></li>
-                <li><a href="vipechka.html"><b>Выпечка</b></a></li>
-                <li><a href="deserty.html"><b>Десерты</b></a></li>
-                <li><a href="napitki.html"><b>Напитки</b></a></li>
+                <li><a href="/Home/Category/Soup"><b>Супы</b></a></li>
+                <li><a href="/Home/Category/SecondCourse"><b>Вторые блюда</b></a></li>
+                <li><a href="/Home/Category/Salad"><b>Салаты</b></a></li>
+                <li><a href="/Home/Category/Snak"><b>Закуски</b></a></li>
+                <li><a href="/Home/Category/Bake"><b>Выпечка</b></a></li>
+                <li><a href="/Home/Category/Dessert"><b>Десерты</b></a></li>
+                <li><a href="/Home/Category/Drink"><b>Напитки</b></a></li>
             </ul>
         </div>
-            <!-- end of menu -->
-
             @RenderBody()
 
             <!-- ADD NEW LINE -->

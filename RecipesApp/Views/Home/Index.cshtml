@@ -1,24 +1,13 @@
 ﻿@{
-                /**/
+    /**/
 
-                ViewBag.Title = "Надины рецепты";
+    ViewBag.Title = "Надины рецепты";
 }
 
-<div id="templatemo_top_dishes">
-   
-    <h1>Супы</h1>
-   
-    @foreach (var r in ViewBag.Recipes)
-    {
-        <div class="top_dishes_box">
-            <a href="@r.Link" target="_parent">
-                <img src="@r.Image" alt="Фото Солянки" />
-            </a>
-            <h2>@r.Name</h2>
-            <p>
-                @r.Ingridient <a href="@r.Link" target="_parent">Читать далее</a>
-            </p>
-        </div>
 
-    }
+
+<!-- end of menu -->
+
+<div id="templatemo_top_dishes">
+    <h1>Выберите категорию блюд</h1>
 </div>

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Надины рецепты";
+}
+
+<div id="templatemo_top_dishes">
+    @{
+        switch (ViewBag.Cat)
+        {
+            case "Soup": <h1>Супы</h1> break;
+            case "SecondCourse": <h1>Вторые блюда</h1> break;
+            case "Salad": <h1>Салаты</h1> break;
+            case "Snak": <h1>Закуски</h1> break;
+            case "Bake": <h1>Выпечка</h1> break;
+            case "Dessert": <h1>Десерты</h1> break;
+            case "Drink": <h1>Напитки</h1> break;
+        }
+    }
+
+
+    @foreach (var r in ViewBag.Recipes)
+    {
+        <div class="top_dishes_box">
+
+            @if (r.Type == ViewBag.Cat)
+            {
+                <a href="@r.Link" target="_parent">
+                    <img src="@r.Image" alt="Фото" />
+                </a>
+                <h2>@r.Name</h2>
+                <p>
+                    @r.Ingridient <a href="@r.Link" target="_parent">Читать далее</a>
+                </p>
+            }
+
+        </div>
+
+    }
+</div>
+
