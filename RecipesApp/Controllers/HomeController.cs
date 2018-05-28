@@ -58,6 +58,10 @@ namespace RecipesApp.Controllers
 
             db.SaveChanges();
 
+            s = "~/Home/About/" + rec.Id.ToString();
+
+            Response.Redirect(s);
+
             return s;
         }
 
