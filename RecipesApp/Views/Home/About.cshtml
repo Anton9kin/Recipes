@@ -6,15 +6,18 @@
 
 
     @{
+        bool show = false;
+
         foreach (var r in ViewBag.Recipes)
         {
             if (r.Id == ViewBag.Show)
             {
+                show = true;
                 string s = "../../Content/images/pic/" + r.Id + ".jpg";
 
                 <h1>@r.Name</h1>
                 <div class="recept">
-                    
+
                     <table>
                         <tr>
                             <td><img src=@s alt=@r.Name /></td>
@@ -26,7 +29,7 @@
                             </td>
                         </tr>
                     </table>
-                    
+
                     <h2>Способ приготовления:</h2>
                     <div class="prigotovlen">
                         @r.Cooking
@@ -34,6 +37,11 @@
                 </div>
                 <div class="cleaner">&nbsp;</div>
             }
+        }
+
+        if (show == false)
+        {
+            <h2>К сожалению блюдо не найдено</h2>
         }
     }
 
