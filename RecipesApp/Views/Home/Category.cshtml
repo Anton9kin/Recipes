@@ -1,20 +1,11 @@
-﻿
+﻿@using RecipesApp.Controllers
 @{
     ViewBag.Title = "Надины рецепты";
 }
 
 <div id="templatemo_top_dishes">
     @{
-        switch (ViewBag.Cat)
-        {
-            case "Soup": <h1>Супы</h1> break;
-            case "SecondCourse": <h1>Вторые блюда</h1> break;
-            case "Salad": <h1>Салаты</h1> break;
-            case "Snak": <h1>Закуски</h1> break;
-            case "Bake": <h1>Выпечка</h1> break;
-            case "Dessert": <h1>Десерты</h1> break;
-            case "Drink": <h1>Напитки</h1> break;
-        }
+        <h1>@ViewBag.Cat</h1>
     }
 
 

@@ -10,6 +10,16 @@ namespace RecipesApp.Controllers
     public class HomeController : Controller
     {
         RecipeContext db = new RecipeContext();
+        Dictionary<TypeCourse, string> typeCourse = new Dictionary<TypeCourse, string>()
+        {
+            { TypeCourse.Soup,          "Суп"},
+            { TypeCourse.SecondCourse,  "Вторые блюда"},
+            { TypeCourse.Salad,         "Салаты"},
+            { TypeCourse.Snak,          "Закуска"},
+            { TypeCourse.Bake,          "Выпечка"},
+            { TypeCourse.Dessert,       "Десерт"},
+            { TypeCourse.Drink,         "Напитки"}
+        };
 
         public ActionResult Index()
         {
@@ -20,18 +30,22 @@ namespace RecipesApp.Controllers
         {
             var recipes = db.Recipes;
             List<Recipe> list = new List<Recipe>();
+            TypeCourse type;
 
             if (id == null)
-                id = "Soup";
+                id = TypeCourse.Soup.ToString();
+
+            type = (TypeCourse)Enum.Parse(typeof(TypeCourse), id);
 
             foreach(Recipe rec in recipes)
             {
-                if (rec.Type.Equals(id))
+                if (rec.Type.Equals(type))
                 {
                     list.Add(rec);
                 }
             }
 
+            ViewBag.Cat = typeCourse[type];
             ViewBag.Recipes = list;
 
             return View();
@@ -40,21 +54,13 @@ namespace RecipesApp.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            return View(typeCourse);
         }
 
         [HttpPost]
         public string Create(Recipe rec)
         {
             string s = "";
-            
-            s += "Вы успешно создали рецепт: ";
-            s += rec.Name + " в категории " + rec.Type + " ";
-            s += "Ингридиенты: " + rec.Ingridient + " ";
-            s += "Спосбо приготовления: " + rec.Cooking;
-            s += "Фото: " + rec.Image;
-
-            rec.Type = GetTypeCourse(rec.Type);
 
             db.Recipes.Add(rec);
 
@@ -67,27 +73,33 @@ namespace RecipesApp.Controllers
             return s;
         }
 
-        private string GetTypeCourse(string type)
+        public ActionResult About(string id)
         {
-            string s = "";
+            Recipe recipe;
+            int idRec;
 
-            switch (type)
+            if (id != null)
             {
-                case "Суп":             s = "Soup"; break;
-                case "Второе блюдо":    s = "SecondCourse"; break;
-                case "Салат":           s = "Salad"; break;
-                case "Закуска":         s = "Snak"; break;
-                case "Выпечка":         s = "Bake"; break;
-                case "Десерт":          s = "Dessert"; break;
-                case "Напиток":         s = "Drink"; break;
-                default:                s = "Soup"; break;
+                idRec = Int32.Parse(id);
+                recipe = db.Recipes.Find(idRec);
+                if (recipe != null)
+                {
+                    return View(recipe);
+                }
+                else
+                {
+                    recipe = new Recipe() { Id = 0 };
+                    return View(recipe);
+                }
             }
-
-            return s;
-
+            else
+            {
+                recipe = new Recipe() { Id = 0 };
+                return View(recipe);
+            }
         }
 
-        public ActionResult About(string id)
+        public ActionResult Editor(string id)
         {
             Recipe recipe;
             int idRec;
