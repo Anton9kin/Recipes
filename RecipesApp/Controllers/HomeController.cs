@@ -83,17 +83,30 @@ namespace RecipesApp.Controllers
         public ActionResult About(string id)
         {
             var recipes = db.Recipes;
-
-            ViewBag.Recipes = recipes;
+            int idRec;
 
             if (id != null)
             {
-                ViewBag.Show = UInt32.Parse(id);
+                idRec = Int32.Parse(id);
             }
             else
             {
-                ViewBag.Show = 0;
+                idRec = 0;
             }
+
+            foreach(Recipe r in db.Recipes)
+            {
+                if (r.Id == idRec)
+                {
+                    ViewBag.Recipe = r;
+                    return View();
+                }
+            }
+
+            Recipe rec = new Recipe();
+            rec.Id = 0;
+            ViewBag.Recipe = rec;
+
             return View();
         }
 

@@ -5,54 +5,50 @@
 
 <div id="templatemo_top_dishes">
 
-
     @{
-        bool show = false;
-
-        foreach (var r in ViewBag.Recipes)
+        if (ViewBag.Recipe.Id != 0)
         {
-            if (r.Id == ViewBag.Show)
-            {
-                show = true;
-                string s = "../../Content/images/pic/" + r.Id + ".jpg";
+            string s = "../../Content/images/pic/" + ViewBag.Recipe.Id + ".jpg";
 
-                <h1>@r.Name</h1>
-                <div class="recept">
+            <h1>@ViewBag.Recipe.Name</h1>
+            <div class="recept">
 
-                    <table>
-                        <tr>
-                            <td><img src=@s alt=@r.Name width="410" height="300"/></td>
-                            <td>
-                                <h2>Ингредиенты:</h2>
-                                <ul>
-                                    @{
-                                        string str = r.Ingridient;
-                                        string[] sIngrid = str.Split(';');
+                <table>
+                    <tr>
+                        <td width="200"><img src=@s alt=@ViewBag.Recipe.Name width="410" height="300"/></td>
+                        <td>
+                            <h2>Ингредиенты:</h2>
+                            <ul>
+                                @{
+                                    string str = ViewBag.Recipe.Ingridient;
+                                    string[] sIngrid = str.Split(';');
 
-                                        foreach (string vs in sIngrid)
+                                    foreach (string vs in sIngrid)
+                                    {
+                                        if (vs.Length > 2)
                                         {
                                             <li>@vs</li>
                                         }
                                     }
-                                </ul>
-                            </td>
-                        </tr>
-                    </table>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
 
-                    <h2>Способ приготовления:</h2>
-                    <div class="prigotovlen">
-                        @r.Cooking
-                    </div>
+                <h2>Способ приготовления:</h2>
+                <div class="prigotovlen">
+                    @ViewBag.Recipe.Cooking
                 </div>
-                <div class="cleaner">&nbsp;</div>
-            }
+            </div>
+            <div class="cleaner">&nbsp;</div>
         }
-
-        if (show == false)
+        else
         {
-            <h2>К сожалению блюдо не найдено</h2>
+            <div class="recept">
+                <h2>К сожалению блюдо не найдено</h2>
+            </div>
         }
     }
-
 
 </div> <!-- end of top dishes -->
