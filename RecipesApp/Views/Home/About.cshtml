@@ -15,11 +15,18 @@
                 <h1>@r.Name</h1>
                 <div class="recept">
                     
-                    <img src=@s alt=@r.Name />
-                    <h2>Ингредиенты:</h2>
-                    <ul>
-                        <li>@r.Ingridient</li>
-                    </ul>
+                    <table>
+                        <tr>
+                            <td><img src=@s alt=@r.Name /></td>
+                            <td>
+                                <h2>Ингредиенты:</h2>
+                                <ul>
+                                    <li>@r.Ingridient</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                    
                     <h2>Способ приготовления:</h2>
                     <div class="prigotovlen">
                         @r.Cooking
