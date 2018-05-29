@@ -21,22 +21,18 @@
     @foreach (var r in ViewBag.Recipes)
     {
         <div class="top_dishes_box">
+            @{
+                string s = "../../Content/images/pic/" + r.Id + ".jpg";
 
-        @if (r.Type == ViewBag.Cat)
-        {
-            string s = "../../Content/images/pic/" + r.Id + ".jpg";
-
-            <a href="/Home/About/@r.Id" target="_parent">
-                <img src=@s alt=@r.Name width="205" height="150"/>
-            </a>
-            <h2>@r.Name</h2>
-            <p>
-                @r.Ingridient <a href="/Home/About/@r.Id" target="_parent">Читать далее</a>
-            </p>
-        }
-
+                <a href="/Home/About/@r.Id" target="_parent">
+                    <img src=@s alt=@r.Name width="205" height="150" />
+                </a>
+                <h2>@r.Name</h2>
+                <p>
+                    @r.Ingridient <a href="/Home/About/@r.Id" target="_parent">Читать далее</a>
+                </p>
+            }
         </div>
-
-    }
-</div>
+     }
+    </div>
 

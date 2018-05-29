@@ -19,13 +19,20 @@ namespace RecipesApp.Controllers
         public ActionResult Category(string id)
         {
             var recipes = db.Recipes;
+            List<Recipe> list = new List<Recipe>();
 
-            ViewBag.Recipes = recipes;
+            if (id == null)
+                id = "Soup";
 
-            if (id != null)
-                ViewBag.Cat = id;
-            else
-                ViewBag.Cat = "Soup";
+            foreach(Recipe rec in recipes)
+            {
+                if (rec.Type.Equals(id))
+                {
+                    list.Add(rec);
+                }
+            }
+
+            ViewBag.Recipes = list;
 
             return View();
         }
