@@ -105,7 +105,7 @@ namespace RecipesApp.Controllers
                 return View(recipe);
             }
         }
-
+        [HttpGet]
         public ActionResult Editor(string id)
         {
             Recipe recipe;
@@ -140,6 +140,17 @@ namespace RecipesApp.Controllers
                 recipe = new Recipe() { Id = 0 };
                 return View(recipe);
             }
+        }
+
+        [HttpPost]
+        public void Editor(Recipe rec)
+        {
+            db.Entry(rec).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            string s = "~/Home/About/" + rec.Id.ToString();
+
+            Response.Redirect(s);
         }
 
         public ActionResult Contact()

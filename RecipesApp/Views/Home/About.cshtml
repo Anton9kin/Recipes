@@ -15,7 +15,7 @@
 
                 <table>
                     <tr>
-                        <td width="200"><img src=@s alt=@Model.Name width="410" height="300"/></td>
+                        <td width="200"><img src=@s alt=@Model.Name width="410" height="300" /></td>
                         <td>
                             <h2>Ингредиенты:</h2>
                             <ul>
@@ -40,6 +40,11 @@
                 <div class="prigotovlen">
                     @Model.Cooking
                 </div>
+            </div>
+            <div>
+                <p>
+                    <a href="/Home/Editor/@Model.Id" target="_parent">Редактировать</a>
+                </p>
             </div>
             <div class="cleaner">&nbsp;</div>
         }
