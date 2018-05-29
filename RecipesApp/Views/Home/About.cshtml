@@ -2,6 +2,7 @@
     ViewBag.Title = "Надины рецепты";
 }
 
+
 <div id="templatemo_top_dishes">
 
 
@@ -24,7 +25,15 @@
                             <td>
                                 <h2>Ингредиенты:</h2>
                                 <ul>
-                                    <li>@r.Ingridient</li>
+                                    @{
+                                        string str = r.Ingridient;
+                                        string[] sIngrid = str.Split(';');
+
+                                        foreach (string vs in sIngrid)
+                                        {
+                                            <li>@vs</li>
+                                        }
+                                    }
                                 </ul>
                             </td>
                         </tr>
