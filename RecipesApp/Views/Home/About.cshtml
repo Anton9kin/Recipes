@@ -10,9 +10,12 @@
         {
             if (r.Id == ViewBag.Show)
             {
+                string s = "../../Content/images/pic/" + r.Id + ".jpg";
+
                 <h1>@r.Name</h1>
                 <div class="recept">
-                    <!--        	  <img src="images/templatemo_image_01.jpg" alt="image" />  -->
+                    
+                    <img src=@s alt=@r.Name />
                     <h2>Ингредиенты:</h2>
                     <ul>
                         <li>@r.Ingridient</li>

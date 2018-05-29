@@ -71,7 +71,14 @@ namespace RecipesApp.Controllers
 
             ViewBag.Recipes = recipes;
 
-            ViewBag.Show = UInt32.Parse(id);
+            if (id != null)
+            {
+                ViewBag.Show = UInt32.Parse(id);
+            }
+            else
+            {
+                ViewBag.Show = 0;
+            }
             return View();
         }
 
