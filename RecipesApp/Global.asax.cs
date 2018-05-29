@@ -14,7 +14,7 @@ namespace RecipesApp
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new RecipeDbInitializer());
+            //Database.SetInitializer(new RecipeDbInitializer());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
