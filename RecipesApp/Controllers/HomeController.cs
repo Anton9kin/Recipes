@@ -10,16 +10,43 @@ namespace RecipesApp.Controllers
     public class HomeController : Controller
     {
         RecipeContext db = new RecipeContext();
-        Dictionary<TypeCourse, string> typeCourse = new Dictionary<TypeCourse, string>()
+        string[] TypeCourse = new string[] { "Супы", "Вторые блюда", "Салаты",  "Закуски", "Выпечка", "Десерты", "Напитки"};
+
+        private string TypeCourseGetMenu(string type)
         {
-            { TypeCourse.Soup,          "Супы"},
-            { TypeCourse.SecondCourse,  "Вторые блюда"},
-            { TypeCourse.Salad,         "Салаты"},
-            { TypeCourse.Snak,          "Закуска"},
-            { TypeCourse.Bake,          "Выпечка"},
-            { TypeCourse.Dessert,       "Десерт"},
-            { TypeCourse.Drink,         "Напитки"}
-        };
+            string s = "";
+
+            switch (type)
+            {
+                case "Soup":         s = "Супы"; break;
+                case "SecondCourse": s = "Вторые блюда"; break;
+                case "Salad":        s = "Салаты"; break;
+                case "Snak":         s = "Закуски"; break;
+                case "Bake":         s = "Выпечка"; break;
+                case "Dessert":      s = "Десерты"; break;
+                case "Drink":        s = "Напитки"; break;
+            }
+
+            return s;
+        }
+
+        private string TypeCourseGetType(string menu)
+        {
+            string s = "";
+
+            switch (menu)
+            {
+                case "Супы": s = "Soup"; break;
+                case "Вторые блюда": s = "SecondCourse"; break;
+                case "Салаты": s = "Salad"; break;
+                case "Закуски": s = "Snak"; break;
+                case "Выпечка": s = "Bake"; break;
+                case "Десерты": s = "Dessert"; break;
+                case "Напитки": s = "Drink"; break;
+            }
+
+            return s;
+        }
 
         public ActionResult Index()
         {
@@ -30,22 +57,21 @@ namespace RecipesApp.Controllers
         {
             var recipes = db.Recipes;
             List<Recipe> list = new List<Recipe>();
-            TypeCourse type;
 
             if (id == null)
-                id = TypeCourse.Soup.ToString();
+                id = "Soup";
 
-            type = (TypeCourse)Enum.Parse(typeof(TypeCourse), id);
+            id = TypeCourseGetMenu(id);
 
             foreach(Recipe rec in recipes)
             {
-                if (rec.Type.Equals(type))
+                if (rec.Type == id)
                 {
                     list.Add(rec);
                 }
             }
 
-            ViewBag.Cat = typeCourse[type];
+            ViewBag.Cat = id;
             ViewBag.Recipes = list;
 
             return View();
@@ -54,13 +80,6 @@ namespace RecipesApp.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            List<string> list = new List<string>();
-            foreach (KeyValuePair<TypeCourse, string> type in typeCourse)
-            {
-                list.Add(type.Value);
-            }
-
-            ViewBag.List = list;
             return View();
         }
 
@@ -111,14 +130,6 @@ namespace RecipesApp.Controllers
             Recipe recipe;
             int idRec;
 
-            List<string> list = new List<string>();
-            foreach (KeyValuePair<TypeCourse, string> type in typeCourse)
-            {
-                list.Add(type.Value);
-            }
-
-            ViewBag.List = list;
-            ViewBag.Type = typeCourse;
 
             if (id != null)
             {
@@ -126,18 +137,18 @@ namespace RecipesApp.Controllers
                 recipe = db.Recipes.Find(idRec);
                 if (recipe != null)
                 {
-                    ViewBag.SelType = typeCourse[recipe.Type];
+
                     return View(recipe);
                 }
                 else
                 {
-                    recipe = new Recipe() { Id = 0 };
+                    recipe = new Recipe() { Id = 0, Type = "Супы" };
                     return View(recipe);
                 }
             }
             else
             {
-                recipe = new Recipe() { Id = 0 };
+                recipe = new Recipe() { Id = 0, Type = "Супы" };
                 return View(recipe);
             }
         }

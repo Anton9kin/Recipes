@@ -17,15 +17,8 @@
                 <tr>
                     <td><p>Выберите категорию :</p></td>
                     <td>
-                        @{
-                            var selectList = new SelectList(ViewBag.List, ViewBag.Type[Model.Type]);
-                            @Html.DropDownList("Type", selectList);
-                        }
+                        @Html.DropDownList("Type", new SelectList(new string[] { "Супы", "Вторые блюда", "Салаты", "Закуски", "Выпечка", "Десерты", "Напитки" }), Model.Type)
                     </td>
-                </tr>
-                <tr>
-                    <td><p>Выберите фото :</p></td>
-                    <td><input type="text" name="Image" /> </td>
                 </tr>
                 <tr>
                     <td><p>Ингридиенты :</p></td>
