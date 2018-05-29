@@ -12,7 +12,7 @@ namespace RecipesApp.Controllers
         RecipeContext db = new RecipeContext();
         Dictionary<TypeCourse, string> typeCourse = new Dictionary<TypeCourse, string>()
         {
-            { TypeCourse.Soup,          "Суп"},
+            { TypeCourse.Soup,          "Супы"},
             { TypeCourse.SecondCourse,  "Вторые блюда"},
             { TypeCourse.Salad,         "Салаты"},
             { TypeCourse.Snak,          "Закуска"},
@@ -54,7 +54,14 @@ namespace RecipesApp.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View(typeCourse);
+            List<string> list = new List<string>();
+            foreach (KeyValuePair<TypeCourse, string> type in typeCourse)
+            {
+                list.Add(type.Value);
+            }
+
+            ViewBag.List = list;
+            return View();
         }
 
         [HttpPost]
@@ -104,12 +111,22 @@ namespace RecipesApp.Controllers
             Recipe recipe;
             int idRec;
 
+            List<string> list = new List<string>();
+            foreach (KeyValuePair<TypeCourse, string> type in typeCourse)
+            {
+                list.Add(type.Value);
+            }
+
+            ViewBag.List = list;
+            ViewBag.Type = typeCourse;
+
             if (id != null)
             {
                 idRec = Int32.Parse(id);
                 recipe = db.Recipes.Find(idRec);
                 if (recipe != null)
                 {
+                    ViewBag.SelType = typeCourse[recipe.Type];
                     return View(recipe);
                 }
                 else
