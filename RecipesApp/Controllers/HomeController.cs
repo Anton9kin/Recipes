@@ -22,7 +22,11 @@ namespace RecipesApp.Controllers
 
             ViewBag.Recipes = recipes;
 
-            ViewBag.Cat = id;
+            if (id != null)
+                ViewBag.Cat = id;
+            else
+                ViewBag.Cat = "Soup";
+
             return View();
         }
 
