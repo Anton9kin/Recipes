@@ -2,25 +2,25 @@
     ViewBag.Title = "Надины рецепты";
 }
 
-
+@model RecipesApp.Models.Recipe
 <div id="templatemo_top_dishes">
 
     @{
-        if (ViewBag.Recipe.Id != 0)
+        if (Model.Id != 0)
         {
-            string s = "../../Content/images/pic/" + ViewBag.Recipe.Id + ".jpg";
+            string s = "../../Content/images/pic/" + Model.Id + ".jpg";
 
-            <h1>@ViewBag.Recipe.Name</h1>
+            <h1>@Model.Name</h1>
             <div class="recept">
 
                 <table>
                     <tr>
-                        <td width="200"><img src=@s alt=@ViewBag.Recipe.Name width="410" height="300"/></td>
+                        <td width="200"><img src=@s alt=@Model.Name width="410" height="300"/></td>
                         <td>
                             <h2>Ингредиенты:</h2>
                             <ul>
                                 @{
-                                    string str = ViewBag.Recipe.Ingridient;
+                                    string str = Model.Ingridient;
                                     string[] sIngrid = str.Split(';');
 
                                     foreach (string vs in sIngrid)
@@ -38,7 +38,7 @@
 
                 <h2>Способ приготовления:</h2>
                 <div class="prigotovlen">
-                    @ViewBag.Recipe.Cooking
+                    @Model.Cooking
                 </div>
             </div>
             <div class="cleaner">&nbsp;</div>
