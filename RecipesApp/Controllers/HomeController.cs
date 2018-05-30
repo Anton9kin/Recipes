@@ -70,7 +70,6 @@ namespace RecipesApp.Controllers
                     list.Add(rec);
                 }
             }
-
             ViewBag.Cat = id;
             ViewBag.Recipes = list;
 

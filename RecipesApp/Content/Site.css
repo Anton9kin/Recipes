@@ -136,7 +136,7 @@ h1 {
 #templatemo_top_dishes {
     clear: both;
     width: 960px;
-    padding: 50px 0px;
+    padding: 30px 0px 0px 0px;
     background: url(images/templatemo_content_top.jpg) top no-repeat;
 }
 
@@ -154,7 +154,7 @@ h1 {
 #templatemo_next_dishes {
     clear: both;
     width: 960px;
-    padding: 50px 0px;
+    padding: 20px 0px 0px 0px;
 }
 
 #templatemo_top_dishes h1 {

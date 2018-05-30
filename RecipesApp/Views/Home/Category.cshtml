@@ -6,23 +6,39 @@
 
 <div id="templatemo_top_dishes">
     <h1>@ViewBag.Cat</h1>
+</div>
 
 
-    @foreach (var r in ViewBag.Recipes)
+@{
+    int size = ViewBag.Recipes.Count;
+
+    for (int i = 0; i < size;)
     {
-        <div class="top_dishes_box">
-            @{
-                string s = "../../Content/images/pic/" + r.Id + ".jpg";
+        <div id="templatemo_next_dishes">
+            @for (int j = 0; j < 4; j++, i++)
+            {
+                if (i >= size)
+                {
+                    j = 5;
+                    continue;
+                }
 
-                <a href="/Home/About/@r.Id" target="_parent">
-                    <img src=@s alt=@r.Name width="205" height="150" />
-                </a>
-                <h2>@r.Name</h2>
-                <p>
-                    @r.Ingridient <a href="/Home/About/@r.Id" target="_parent">Читать далее</a>
-                </p>
+
+                <div class="top_dishes_box">
+                    @{
+                        string s = "../../Content/images/pic/" + @ViewBag.Recipes[i].Id + ".jpg";
+
+                        <a href="/Home/About/@ViewBag.Recipes[i].Id" target="_parent">
+                            <img src=@s alt=@ViewBag.Recipes[i].Name width="205" height="150" />
+                        </a>
+                        <h2>@ViewBag.Recipes[i].Name</h2>
+                        <p>
+                            @ViewBag.Recipes[i].Ingridient <a href="/Home/About/@ViewBag.Recipes[i].Id" target="_parent">Читать далее</a>
+                        </p>
+                    }
+                </div>
             }
         </div>
-     }
-    </div>
+    }
 
+}
