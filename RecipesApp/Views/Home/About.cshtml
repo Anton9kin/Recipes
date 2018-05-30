@@ -6,54 +6,45 @@
 <div id="templatemo_top_dishes">
 
     @{
-        if (Model.Id != 0)
-        {
-            string s = "../../Content/images/pic/" + Model.Id + ".jpg";
+        string s = "../../Content/images/pic/" + Model.Id + ".jpg";
 
-            <h1>@Model.Name</h1>
-            <div class="recept">
+        <h1>@Model.Name</h1>
+        <div class="recept">
 
-                <table>
-                    <tr>
-                        <td width="200"><img src=@s alt=@Model.Name width="410" height="300" /></td>
-                        <td>
-                            <h2>Ингредиенты:</h2>
-                            <ul>
-                                @{
-                                    string str = Model.Ingridient;
-                                    string[] sIngrid = str.Split(';');
+            <table>
+                <tr>
+                    <td width="200"><img src=@s alt=@Model.Name width="410" height="300" /></td>
+                    <td>
+                        <h2>Ингредиенты:</h2>
+                        <ul>
+                            @{
+                                string str = Model.Ingridient;
+                                string[] sIngrid = str.Split(';');
 
-                                    foreach (string vs in sIngrid)
+                                foreach (string vs in sIngrid)
+                                {
+                                    if (vs.Length > 2)
                                     {
-                                        if (vs.Length > 2)
-                                        {
-                                            <li>@vs</li>
-                                        }
+                                        <li>@vs</li>
                                     }
                                 }
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            </table>
 
-                <h2>Способ приготовления:</h2>
-                <div class="prigotovlen">
-                    @Model.Cooking
-                </div>
+            <h2>Способ приготовления:</h2>
+            <div class="prigotovlen">
+                @Model.Cooking
             </div>
-            <div>
-                <p>
-                    <a href="/Home/Editor/@Model.Id" target="_parent">Редактировать</a>
-                </p>
-            </div>
-            <div class="cleaner">&nbsp;</div>
-        }
-        else
-        {
-            <div class="recept">
-                <h2>К сожалению блюдо не найдено</h2>
-            </div>
-        }
+        </div>
+        <div>
+            <p>
+                <a href="/Home/Editor/@Model.Id" target="_parent">Редактировать</a>
+            </p>
+        </div>
+        <div class="cleaner">&nbsp;</div>
     }
 
 </div> <!-- end of top dishes -->

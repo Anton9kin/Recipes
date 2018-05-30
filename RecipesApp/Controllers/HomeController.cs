@@ -114,14 +114,12 @@ namespace RecipesApp.Controllers
                 }
                 else
                 {
-                    recipe = new Recipe() { Id = 0 };
-                    return View(recipe);
+                    return View("~/Views/Home/NotFound.cshtml");
                 }
             }
             else
             {
-                recipe = new Recipe() { Id = 0 };
-                return View(recipe);
+                return View("~/Views/Home/NotFound.cshtml");
             }
         }
         [HttpGet]
@@ -129,7 +127,6 @@ namespace RecipesApp.Controllers
         {
             Recipe recipe;
             int idRec;
-
 
             if (id != null)
             {
@@ -142,14 +139,12 @@ namespace RecipesApp.Controllers
                 }
                 else
                 {
-                    recipe = new Recipe() { Id = 0, Type = "Супы" };
-                    return View(recipe);
+                    return View("~/Views/Home/NotFound.cshtml");
                 }
             }
             else
             {
-                recipe = new Recipe() { Id = 0, Type = "Супы" };
-                return View(recipe);
+                return View("~/Views/Home/NotFound.cshtml");
             }
         }
 
@@ -164,10 +159,8 @@ namespace RecipesApp.Controllers
             Response.Redirect(s);
         }
 
-        public ActionResult Contact()
+        public ActionResult NotFound()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }
