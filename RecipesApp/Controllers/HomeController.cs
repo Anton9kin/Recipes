@@ -10,43 +10,25 @@ namespace RecipesApp.Controllers
     public class HomeController : Controller
     {
         RecipeContext db = new RecipeContext();
-        string[] TypeCourse = new string[] { "Супы", "Вторые блюда", "Салаты",  "Закуски", "Выпечка", "Десерты", "Напитки"};
-
-        private string TypeCourseGetMenu(string type)
+        Dictionary<string, string> TypeDish = new Dictionary<string, string>
         {
-            string s = "";
+            { "Soup",               "Супы" },
+            { "SecondCourse",       "Вторые блюда"},
+            { "Salad",              "Салаты" },
+            { "Snak",               "Закуски" },
+            { "Bake",               "Выпечка" },
+            { "Dessert",            "Десерты" },
+            { "Drink",              "Напитки" },
+        };
 
-            switch (type)
-            {
-                case "Soup":         s = "Супы"; break;
-                case "SecondCourse": s = "Вторые блюда"; break;
-                case "Salad":        s = "Салаты"; break;
-                case "Snak":         s = "Закуски"; break;
-                case "Bake":         s = "Выпечка"; break;
-                case "Dessert":      s = "Десерты"; break;
-                case "Drink":        s = "Напитки"; break;
-            }
-
-            return s;
-        }
-
-        private string TypeCourseGetType(string menu)
+        Dictionary<string, string> SecondDish = new Dictionary<string, string>
         {
-            string s = "";
-
-            switch (menu)
-            {
-                case "Супы": s = "Soup"; break;
-                case "Вторые блюда": s = "SecondCourse"; break;
-                case "Салаты": s = "Salad"; break;
-                case "Закуски": s = "Snak"; break;
-                case "Выпечка": s = "Bake"; break;
-                case "Десерты": s = "Dessert"; break;
-                case "Напитки": s = "Drink"; break;
-            }
-
-            return s;
-        }
+            { "SecondMeat",         "Второе из мяса" },
+            { "SecondFish",         "Второе из рыбы" },
+            { "SecondChicken",      "Второе из курицы" },
+            { "SecondPotate",       "Второе из картофеля" },
+            { "SecondKasha",        "Каши" }
+        };
 
         public ActionResult Index()
         {
@@ -61,7 +43,18 @@ namespace RecipesApp.Controllers
             if (id == null)
                 id = "Soup";
 
-            id = TypeCourseGetMenu(id);
+            if (TypeDish.ContainsKey(id))
+            {
+                id = TypeDish[id];
+            }
+            else
+            {
+                if (SecondDish.ContainsKey(id))
+                {
+                    id = SecondDish[id];
+                }
+            }
+                
 
             foreach(Recipe rec in recipes)
             {
@@ -72,6 +65,7 @@ namespace RecipesApp.Controllers
             }
             ViewBag.Cat = id;
             ViewBag.Recipes = list;
+            ViewBag.TypeDish = SecondDish;
 
             return View();
         }
@@ -79,6 +73,22 @@ namespace RecipesApp.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            List<string> list = new List<string>();
+
+            foreach(string type in TypeDish.Values)
+            {
+                list.Add(type);
+                if (type == "Вторые блюда")
+                {
+                    foreach(string subtype in SecondDish.Values)
+                    {
+                        list.Add(subtype);
+                    }
+                }
+            }
+
+            ViewBag.SelectList = list.ToArray();
+
             return View();
         }
 
@@ -133,7 +143,21 @@ namespace RecipesApp.Controllers
                 recipe = db.Recipes.Find(idRec);
                 if (recipe != null)
                 {
+                    List<string> list = new List<string>();
 
+                    foreach (string type in TypeDish.Values)
+                    {
+                        list.Add(type);
+                        if (type == "Вторые блюда")
+                        {
+                            foreach (string subtype in SecondDish.Values)
+                            {
+                                list.Add(subtype);
+                            }
+                        }
+                    }
+
+                    ViewBag.SelectList = list.ToArray();
                     return View(recipe);
                 }
                 else

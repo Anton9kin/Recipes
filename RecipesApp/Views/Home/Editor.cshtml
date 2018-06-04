@@ -17,7 +17,7 @@
                 <tr>
                     <td><p>Выберите категорию :</p></td>
                     <td>
-                        @Html.DropDownList("Type", new SelectList(new string[] { "Супы", "Вторые блюда", "Второе из мяса", "Второе из рыбы", "Второе из курицы", "Второе из картофеля", "Каши", "Салаты", "Закуски", "Выпечка", "Десерты", "Напитки" }), Model.Type)
+                        @Html.DropDownList("Type", new SelectList(ViewBag.SelectList), Model.Type)
                     </td>
                 </tr>
                 <tr>
