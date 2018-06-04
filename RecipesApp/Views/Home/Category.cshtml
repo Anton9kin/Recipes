@@ -25,32 +25,43 @@
 
         int size = ViewBag.Recipes.Count;
 
-        for (int i = 0; i < size;)
+        if (size > 0)
+        {
+            for (int i = 0; i < size;)
+            {
+                <div id="templatemo_next_dishes">
+                    @for (int j = 0; j < 4; j++, i++)
+                    {
+                        if (i >= size)
+                        {
+                            j = 5;
+                            continue;
+                        }
+
+
+                        <div class="top_dishes_box">
+                            @{
+                                string s = "../../Content/images/pic/" + @ViewBag.Recipes[i].Id + ".jpg";
+
+                                <a href="/Home/About/@ViewBag.Recipes[i].Id" target="_parent">
+                                    <img src=@s alt=@ViewBag.Recipes[i].Name width="205" height="150" />
+                                </a>
+                                <h2>@ViewBag.Recipes[i].Name</h2>
+                                <p>
+                                    @ViewBag.Recipes[i].Ingridient <a href="/Home/About/@ViewBag.Recipes[i].Id" target="_parent">Читать далее</a>
+                                </p>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        }
+        else
         {
             <div id="templatemo_next_dishes">
-                @for (int j = 0; j < 4; j++, i++)
-                {
-                    if (i >= size)
-                    {
-                        j = 5;
-                        continue;
-                    }
-
-
-                    <div class="top_dishes_box">
-                        @{
-                            string s = "../../Content/images/pic/" + @ViewBag.Recipes[i].Id + ".jpg";
-
-                            <a href="/Home/About/@ViewBag.Recipes[i].Id" target="_parent">
-                                <img src=@s alt=@ViewBag.Recipes[i].Name width="205" height="150" />
-                            </a>
-                            <h2>@ViewBag.Recipes[i].Name</h2>
-                            <p>
-                                @ViewBag.Recipes[i].Ingridient <a href="/Home/About/@ViewBag.Recipes[i].Id" target="_parent">Читать далее</a>
-                            </p>
-                        }
-                    </div>
-                }
+                <div class="top_dishes_box">
+                    <h2>В этой категории пока нет рецептов</h2>
+                </div>
             </div>
         }
     }
