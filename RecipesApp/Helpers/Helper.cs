@@ -94,7 +94,7 @@ namespace RecipesApp.Helpers
 
         public static MvcHtmlString CreateListIngridient(this HtmlHelper html, string list)
         {
-            string[] sIngrid = list.Split(';');
+            string[] sIngrid = list.Split('\n');
 
             TagBuilder ul = new TagBuilder("ul");
 
