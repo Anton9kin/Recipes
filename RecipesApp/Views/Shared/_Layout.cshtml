@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using RecipesApp.Helpers
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -17,15 +19,18 @@
         </div>
         <!-- end of header -->
         <div id="menu">
-            <ul>
-                <li><a href="/Home/Category/Soup"><b>Супы</b></a></li>
-                <li><a href="/Home/Category/SecondCourse"><b>Вторые блюда</b></a></li>
-                <li><a href="/Home/Category/Salad"><b>Салаты</b></a></li>
-                <li><a href="/Home/Category/Snak"><b>Закуски</b></a></li>
-                <li><a href="/Home/Category/Bake"><b>Выпечка</b></a></li>
-                <li><a href="/Home/Category/Dessert"><b>Десерты</b></a></li>
-                <li><a href="/Home/Category/Drink"><b>Напитки</b></a></li>
-            </ul>
+            @Html.CreateMenu(ViewBag.Cat as string)
+            <!--
+    <ul>
+        <li><a href="/Home/Category/Soup"><b>Супы</b></a></li>
+        <li><a href="/Home/Category/SecondCourse"><b>Вторые блюда</b></a></li>
+        <li><a href="/Home/Category/Salad"><b>Салаты</b></a></li>
+        <li><a href="/Home/Category/Snak"><b>Закуски</b></a></li>
+        <li><a href="/Home/Category/Bake"><b>Выпечка</b></a></li>
+        <li><a href="/Home/Category/Dessert"><b>Десерты</b></a></li>
+        <li><a href="/Home/Category/Drink"><b>Напитки</b></a></li>
+    </ul>
+        -->
         </div>
             @RenderBody()
 

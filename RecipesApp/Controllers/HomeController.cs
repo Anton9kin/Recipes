@@ -10,25 +10,10 @@ namespace RecipesApp.Controllers
     public class HomeController : Controller
     {
         RecipeContext db = new RecipeContext();
-        Dictionary<string, string> TypeDish = new Dictionary<string, string>
-        {
-            { "Soup",               "Супы" },
-            { "SecondCourse",       "Вторые блюда"},
-            { "Salad",              "Салаты" },
-            { "Snak",               "Закуски" },
-            { "Bake",               "Выпечка" },
-            { "Dessert",            "Десерты" },
-            { "Drink",              "Напитки" },
-        };
 
-        Dictionary<string, string> SecondDish = new Dictionary<string, string>
-        {
-            { "SecondMeat",         "Второе из мяса" },
-            { "SecondFish",         "Второе из рыбы" },
-            { "SecondChicken",      "Второе из курицы" },
-            { "SecondPotate",       "Второе из картофеля" },
-            { "SecondKasha",        "Каши" }
-        };
+        public Dictionary<string, string> TypeDish = Helpers.Helper.MenuDish;
+
+        Dictionary<string, string> SecondDish = Helpers.Helper.SecondMenuDish;
 
         public ActionResult Index()
         {
