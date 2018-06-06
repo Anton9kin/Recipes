@@ -80,19 +80,19 @@ namespace RecipesApp.Helpers
             return new MvcHtmlString(ul.ToString());
         }
 
-        public static MvcHtmlString CreateList(this HtmlHelper html, string nameList, string list)
+        public static MvcHtmlString CreateListIngridient(this HtmlHelper html, string nameList, string list)
         {
             MvcHtmlString mvc;
 
             TagBuilder h = new TagBuilder("h2");
             h.SetInnerText(nameList);
 
-            mvc = new MvcHtmlString(h.ToString() + CreateList(html, list));
+            mvc = new MvcHtmlString(h.ToString() + CreateListIngridient(html, list));
 
             return mvc;
         }
 
-        public static MvcHtmlString CreateList(this HtmlHelper html, string list)
+        public static MvcHtmlString CreateListIngridient(this HtmlHelper html, string list)
         {
             string[] sIngrid = list.Split(';');
 
