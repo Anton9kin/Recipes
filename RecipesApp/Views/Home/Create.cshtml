@@ -5,12 +5,12 @@
 <div id="templatemo_top_dishes">
     <h1>Добавление рецепта</h1>
 
-    <div class="top_dishes_box">
+    <div class="top_dishes_box_create">
         <form method="post" action="">
             <table>
                 <tr>
                     <td><p>Название блюда :</p></td>
-                    <td><input type="text" name="Name" /> </td>
+                    <td>@Html.TextArea("Name", "", 1, 50, null)</td>
                 </tr>
                 <tr>
                     <td><p>Выберите категорию :</p></td>
@@ -26,7 +26,10 @@
                     <td><p>Как готовить :</p></td>
                     <td>@Html.TextArea("Cooking", "", 25, 50, null)</td>
                 </tr>
-                <tr><td><input type="submit" value="Добавить рецепт" /> </td><td></td></tr>
+                <tr>
+                    <td></td>
+                    <td align="right"><input type="submit" value="Добавить рецепт" /> </td>
+                </tr>
             </table>
         </form>
     </div>

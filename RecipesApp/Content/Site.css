@@ -213,6 +213,12 @@ h1 {
     margin-left: 20px;
 }
 
+#templatemo_top_dishes .top_dishes_box_create {
+    float: left;
+    width: 400px;
+    margin-left: 20px;
+}
+
 #templatemo_next_dishes .top_dishes_box {
     float: left;
     width: 215px;
