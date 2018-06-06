@@ -79,5 +79,37 @@ namespace RecipesApp.Helpers
             }
             return new MvcHtmlString(ul.ToString());
         }
+
+        public static MvcHtmlString CreateList(this HtmlHelper html, string nameList, string list)
+        {
+            MvcHtmlString mvc;
+
+            TagBuilder h = new TagBuilder("h2");
+            h.SetInnerText(nameList);
+
+            mvc = new MvcHtmlString(h.ToString() + CreateList(html, list));
+
+            return mvc;
+        }
+
+        public static MvcHtmlString CreateList(this HtmlHelper html, string list)
+        {
+            string[] sIngrid = list.Split(';');
+
+            TagBuilder ul = new TagBuilder("ul");
+
+
+            foreach (string vs in sIngrid)
+            {
+                if (vs.Length > 2)
+                {
+                    TagBuilder li = new TagBuilder("li");
+                    li.SetInnerText(vs);
+                    ul.InnerHtml += li.ToString();
+                }
+            }
+
+            return new MvcHtmlString(ul.ToString());
+        }
     }
 }
