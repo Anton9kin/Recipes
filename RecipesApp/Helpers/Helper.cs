@@ -80,6 +80,44 @@ namespace RecipesApp.Helpers
             return new MvcHtmlString(ul.ToString());
         }
 
+        public static MvcHtmlString CreateListIngridient_ex(this HtmlHelper html, string name, string list)
+        {
+            string listEx = "";
+
+            string[] ingridentList = list.Split(';');
+
+            if (ingridentList.Length > 1)
+            {
+                foreach (string l in ingridentList)
+                {
+                    string[] listing = l.Split(':');
+                    if (listing.Length == 1)
+                    {
+                        listEx += CreateListIngridient(html, name, listing[0]).ToString();
+                    }
+                    else
+                    {
+                        listEx += CreateListIngridient(html, listing[0], listing[1]).ToString();
+                    }
+                }
+            }
+            else
+            {
+                string[] listing = ingridentList[0].Split(':');
+                if (listing.Length == 1)
+                {
+                    listEx += CreateListIngridient(html, name, listing[0]).ToString();
+                }
+                else
+                {
+                    listEx += CreateListIngridient(html, listing[0], listing[1]).ToString();
+                }
+            }
+
+
+            return new MvcHtmlString(listEx);
+        }
+
         public static MvcHtmlString CreateListIngridient(this HtmlHelper html, string nameList, string list)
         {
             MvcHtmlString mvc;
